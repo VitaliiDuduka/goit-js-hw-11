@@ -1,7 +1,7 @@
 import Api from './api';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const picsApiService = new Api();
+const picsApi = new Api();
 
 const form = document.querySelector('.search-form');
 const input = document.querySelector('.search-input');
@@ -15,17 +15,17 @@ moreBtn.addEventListener('click', onMoreClick);
 async function onSearchClick(event) {
   event.preventDefault();
   gallery.innerHTML = '';
-  picsApiService.page=1;
+  picsApi.page=1;
   moreBtn.classList.add('is-hidden');
 
-  picsApiService.query = event.currentTarget.elements.searchQuery.value.trim();
+  picsApi.query = event.currentTarget.elements.searchQuery.value.trim();
 
-  if (!picsApiService.query) {
+  if (!picsApi.query) {
     Notify.warning('Type something, please!');
     return;
   }
 
-  const data = await picsApiService.fetchQuery();
+  const data = await picsApi.fetchQuery();
 
   if (data.totalHits === 0) {
     Notify.failure(
@@ -71,13 +71,13 @@ function renderCard(data) {
 }
 
 async function onMoreClick() {
-  const data = await picsApiService.fetchQuery();
+  const data = await picsApi.fetchQuery();
   renderCard(data);
   checkEndReach();
 }
 
 function checkEndReach() {
-  if (picsApiService.total <= 39 * (picsApiService.page - 1)) {
+  if (picsApi.total <= 39 * (picsApi.page - 1)) {
     moreBtn.classList.add('is-hidden');
 
     Notify.warning(
