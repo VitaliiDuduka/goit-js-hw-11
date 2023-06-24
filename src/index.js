@@ -1,5 +1,8 @@
 import Api from './api';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 
 const picsApi = new Api();
 
@@ -11,6 +14,12 @@ const gallery = document.querySelector('.gallery');
 
 form.addEventListener('submit', onSearchClick);
 moreBtn.addEventListener('click', onMoreClick);
+gallery.addEventListener('click', onTestClick);
+
+function onTestClick(e) {
+    e.preventDefault();
+}
+
 
 async function onSearchClick(event) {
   event.preventDefault();
@@ -39,7 +48,7 @@ async function onSearchClick(event) {
   moreBtn.classList.remove('is-hidden');
 
     checkEndReach();
-    
+
 }
 
 function renderCard(data) {
@@ -49,7 +58,7 @@ function renderCard(data) {
     const card = document.createElement('div');
     card.className = 'photo-card';
 
-    card.innerHTML = `<img src="${item.webformatURL}" alt="${item.tags}" loading="lazy" />
+    card.innerHTML = `<a href="${item.webformatURL}"><img src="${item.webformatURL}" alt="${item.tags}" loading="lazy" /></a>
     <div class="info">
       <p class="info-item">
         Views <br/><b>${item.views}</b>
@@ -68,6 +77,7 @@ function renderCard(data) {
       cardsArray.push(card);
   });
     gallery.append(...cardsArray);
+    lightbox.refresh();
 }
 
 async function onMoreClick() {
@@ -85,3 +95,14 @@ function checkEndReach() {
     );
   }
 }
+
+    const lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionsDelay: 250,
+  disableScroll: false,
+});
+lightbox.on('show.simplelightbox', function (event) {
+    event.preventDefault();
+    console.log("click");
+});
+
