@@ -1,2 +1,83 @@
 @import './common';
 @import './example';
+
+@import '~node_modules/modern-normalize/modern-normalize.css';
+
+.is-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3px;
+}
+
+.gallery img {
+    position: relative;
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.photo-card {
+    height: 480px;
+    border: 1px solid black;
+    outline-offset: -3px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.info p {
+    text-align: center;
+}
+
+.button {
+    background-color: white;
+    border: 1px solid black;
+    outline: none;
+    &:active {
+        background-color: lightseagreen;
+    }
+}
+
+.load-more {
+    display: block;
+    margin: 25px auto;
+    padding: 10px 15px 5px 15px;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-bottom: 3px;
+    background-color: #a5ddf3;
+}
+
+.search-input {
+    display: inline-block;
+    vertical-align: baseline;
+    height: 50px;
+    width: 500px;
+    padding: 10px;
+    padding-top: 10px;
+    outline: none;
+}
+
+.search-button {
+    width: 150px;
+}
