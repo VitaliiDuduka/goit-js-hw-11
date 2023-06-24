@@ -1,7 +1,7 @@
-import PicsApiService from './api';
+import Api from './api';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const picsApiService = new PicsApiService();
+const picsApiService = new Api();
 
 const form = document.querySelector('.search-form');
 const input = document.querySelector('.search-input');
@@ -16,7 +16,6 @@ async function onSearchClick(event) {
   event.preventDefault();
   gallery.innerHTML = '';
   picsApiService.page=1;
-    // picsApiService.pageReset();
   moreBtn.classList.add('is-hidden');
 
   picsApiService.query = event.currentTarget.elements.searchQuery.value.trim();

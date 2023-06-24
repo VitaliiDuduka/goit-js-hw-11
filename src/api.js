@@ -5,12 +5,10 @@ const BASE_URL = 'https://pixabay.com/api';
 const API_KEY = '37780735-65f99d8f5cca5af3b0b1b32c8';
 
 
-export default class PicsApiService {
-  constructor() {
-    this.searchQuery = '';
-    this.page = 1;
-    this.total = 0;
-  }
+// export default class PicsApiService {
+
+
+export default class Api {
 
   async fetchQuery() {
     try {
@@ -37,3 +35,5 @@ export default class PicsApiService {
   }
 
 }
+
+
